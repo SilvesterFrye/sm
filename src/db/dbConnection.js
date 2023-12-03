@@ -1,10 +1,17 @@
 import mongoose from "mongoose";
 
-const DATABASE_NAME = "Task"
-async function connectDB(){
-    try {
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DATABASE_NAME}`)
-    } catch (error) {
-        console.log("MongoDB connection Error: ", error);
-    }
-}
+export default async function connectDB() {
+  try {
+    mongoose.connect(process.env.MONGODB_URI);
+    const connection = mongoose.connection;
+    connection.on("connected", () => {
+      console.log(`mongoDB connected`);
+    });
+    connection.on("error", (error) => {
+      console.log("connection error", error);
+      process.exit();
+    });
+  } catch (error) {
+    console.log(error);
+  }
+} 

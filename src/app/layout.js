@@ -1,16 +1,19 @@
-import './globals.css'
+"use client";
+import { useEffect, useState } from "react";
+import { Footer, NavBar } from "./components";
+import { TodoProvider } from "./contexts";
+import "./globals.css";
 
-
-
-export const metadata = {
-  title: 'Task Management System',
-  description: 'A Semester Project',
-}
 
 export default function RootLayout({ children }) {
+
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+          
+           {children}
+      </body>
     </html>
-  )
+  );
 }
